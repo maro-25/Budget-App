@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     const inputs = document.querySelectorAll('.amount-input');
+    const labelInputs = document.querySelectorAll('.label-input');
     const sectionHeaders = document.querySelectorAll('.section-header');
+
+    // Store default label names for edit detection
+    var defaultLabels = [];
+    labelInputs.forEach(function (label) {
+        defaultLabels.push(label.value);
+    });
 
     // Format currency
     function formatCurrency(amount) {
@@ -80,6 +87,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Attach label edit listeners
+    labelInputs.forEach(function (label, index) {
+        label.addEventListener('input', function () {
+            if (this.value !== defaultLabels[index]) {
+                this.classList.add('label-edited');
+            } else {
+                this.classList.remove('label-edited');
+            }
+            saveData();
+        });
+    });
+
     // Toggle sections
     sectionHeaders.forEach(function (header) {
         header.addEventListener('click', function () {
@@ -96,8 +115,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var month = document.getElementById('budgetMonth').value;
         data.month = month;
         data.values = [];
+        data.labels = [];
         inputs.forEach(function (input, index) {
             data.values.push(input.value);
+        });
+        labelInputs.forEach(function (label) {
+            data.labels.push(label.value);
         });
         localStorage.setItem('budgetApp_' + month, JSON.stringify(data));
         localStorage.setItem('budgetApp_lastMonth', month);
@@ -114,6 +137,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     updateInputStyle(input);
                 }
             });
+            if (data.labels) {
+                labelInputs.forEach(function (label, index) {
+                    if (data.labels[index]) {
+                        label.value = data.labels[index];
+                        if (label.value !== defaultLabels[index]) {
+                            label.classList.add('label-edited');
+                        } else {
+                            label.classList.remove('label-edited');
+                        }
+                    }
+                });
+            }
         }
         recalculate();
     }
@@ -125,15 +160,24 @@ document.addEventListener('DOMContentLoaded', function () {
             input.value = '';
             input.classList.remove('has-value');
         });
+        // Reset labels to defaults
+        labelInputs.forEach(function (label, index) {
+            label.value = defaultLabels[index];
+            label.classList.remove('label-edited');
+        });
         loadData(this.value);
     });
 
     // Clear all
     document.getElementById('btnClear').addEventListener('click', function () {
-        if (confirm('Are you sure you want to clear all values?')) {
+        if (confirm('Are you sure you want to clear all values and reset item names?')) {
             inputs.forEach(function (input) {
                 input.value = '';
                 input.classList.remove('has-value');
+            });
+            labelInputs.forEach(function (label, index) {
+                label.value = defaultLabels[index];
+                label.classList.remove('label-edited');
             });
             recalculate();
         }
@@ -157,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             sectionInputs.forEach(function (input) {
                 var lineItem = input.closest('.line-item');
-                var label = lineItem.querySelector('label').textContent;
+                var label = lineItem.querySelector('.label-input').value;
                 var value = parseFloat(input.value) || 0;
                 rows.push([sectionName, label, value.toFixed(2)]);
             });

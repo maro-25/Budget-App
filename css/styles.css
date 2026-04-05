@@ -221,6 +221,37 @@ body {
     padding-right: 16px;
 }
 
+.label-input {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    flex: 1;
+    padding: 4px 8px;
+    margin-right: 16px;
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    background: transparent;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 0;
+}
+
+.label-input:hover {
+    border-color: var(--color-border);
+    background: #fafafa;
+}
+
+.label-input:focus {
+    border-color: var(--color-savings);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+}
+
+.label-input.label-edited {
+    font-style: italic;
+    color: var(--color-savings);
+}
+
 .input-group {
     display: flex;
     align-items: center;
@@ -373,6 +404,11 @@ body {
         padding-right: 0;
     }
 
+    .label-input {
+        margin-right: 0;
+        width: 100%;
+    }
+
     .input-group {
         width: 100%;
     }
@@ -430,5 +466,11 @@ body {
         border: none;
         background: none !important;
         font-weight: 600;
+    }
+
+    .label-input {
+        border: none;
+        background: none;
+        padding: 0;
     }
 }
