@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget App - Monthly Financial Planner</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Monthly Budget Planner</h1>
+            <div class="month-selector">
+                <label for="budgetMonth">Month:</label>
+                <input type="month" id="budgetMonth" value="2016-01">
+            </div>
+        </header>
+
+        <div class="summary-bar">
+            <div class="summary-card income-card">
+                <span class="summary-label">Gross Income</span>
+                <span class="summary-value" id="summaryIncome">R 0.00</span>
+            </div>
+            <div class="summary-card expense-card">
+                <span class="summary-label">Total Expenses</span>
+                <span class="summary-value" id="summaryExpenses">R 0.00</span>
+            </div>
+            <div class="summary-card disposable-card">
+                <span class="summary-label">Disposable Income</span>
+                <span class="summary-value" id="summaryDisposable">R 0.00</span>
+            </div>
+        </div>
+
+        <main class="budget-sections">
+
+            <!-- INCOME -->
+            <section class="budget-section" data-section="income">
+                <div class="section-header income-header">
+                    <h2>Bruto Income</h2>
+                    <span class="section-total" id="totalIncome">R 0.00</span>
+                </div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <label>Gross Salary</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input income-input" data-category="income" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LESS EXPENSES -->
+            <section class="budget-section" data-section="expenses">
+                <div class="section-header expense-header">
+                    <h2>Less Expenses</h2>
+                    <span class="section-total" id="totalExpenses">R 0.00</span>
+                </div>
+                <div class="section-body">
+
+                    <!-- Housing -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">Housing</h3>
+                        <div class="line-item">
+                            <label>Home Loan: FNB</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Bond Expenses: House</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Water & Rates Payments</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Electricity</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transport -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">Transport</h3>
+                        <div class="line-item">
+                            <label>Vehicle Finance Incl. Add. Insurance & Covers</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Transport (Fuel & Other)</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Vehicle Tracking</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insurance & Medical -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">Insurance & Medical</h3>
+                        <div class="line-item">
+                            <label>Insurance</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Medical Aid Contribution, Dr Payment, Medication</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Communication & Entertainment -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">Communication & Entertainment</h3>
+                        <div class="line-item">
+                            <label>Cell Contracts</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Internet Usage Fee</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>DStv</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Telephone Account</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education & Church -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">Education & Church</h3>
+                        <div class="line-item">
+                            <label>Church</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Studies (CPUT Btech, Unisa, USB)</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banking & Credit -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">Banking & Credit</h3>
+                        <div class="line-item">
+                            <label>Bank Costs</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Credit Card</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>RCP: Revolving Credit Policy</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Occasions -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">Occasions & Events</h3>
+                        <div class="line-item">
+                            <label>Birthday's (Cakes, Presents, Parties)</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Christmas (Presents, Parties)</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="line-item">
+                            <label>Festive Season Travel Funds (Petrol)</label>
+                            <div class="input-group">
+                                <span class="currency">R</span>
+                                <input type="number" class="amount-input expense-input" data-category="expenses" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SAVINGS -->
+            <section class="budget-section" data-section="savings">
+                <div class="section-header savings-header">
+                    <h2>Savings</h2>
+                    <span class="section-total" id="totalSavings">R 0.00</span>
+                </div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <label>Emergency Savings</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input savings-input" data-category="savings" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Fixed Savings</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input savings-input" data-category="savings" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Retirement Savings</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input savings-input" data-category="savings" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Funeral Savings</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input savings-input" data-category="savings" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FINANCIAL PLANNING -->
+            <section class="budget-section" data-section="planning">
+                <div class="section-header planning-header">
+                    <h2>Financial Planning</h2>
+                    <span class="section-total" id="totalPlanning">R 0.00</span>
+                </div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <label>Education Plan (CPUT, Unisa, USB)</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Electronics (Tablet, Phone)</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Car Deposit / Balloon Settlement</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Computer Hardware & Software</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Appliances (TV, Decoders, Microwaves)</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>IIA Membership</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Car Maintenance</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Shops (Truworths, Markhams)</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Vacation</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>House Purchase</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Toiletries</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Birthday Expenses</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Baby Expenses</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Wedding Expenses</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Loan Account</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input planning-input" data-category="planning" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- POCKET MONEY -->
+            <section class="budget-section" data-section="pocket">
+                <div class="section-header pocket-header">
+                    <h2>Pocket Money</h2>
+                    <span class="section-total" id="totalPocket">R 0.00</span>
+                </div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <label>Pocket Money</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input pocket-input" data-category="pocket" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DEBT -->
+            <section class="budget-section" data-section="debt">
+                <div class="section-header debt-header">
+                    <h2>Debt</h2>
+                    <span class="section-total" id="totalDebt">R 0.00</span>
+                </div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <label>Cell Phone Purchased</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input debt-input" data-category="debt" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Loan Settlement</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input debt-input" data-category="debt" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="line-item">
+                        <label>Interest Re-Imbursement</label>
+                        <div class="input-group">
+                            <span class="currency">R</span>
+                            <input type="number" class="amount-input debt-input" data-category="debt" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DISPOSABLE INCOME -->
+            <section class="budget-section" data-section="disposable">
+                <div class="section-header disposable-header">
+                    <h2>Disposable Income</h2>
+                    <span class="section-total" id="totalDisposable">R 0.00</span>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="app-footer">
+            <div class="footer-actions">
+                <button id="btnClear" class="btn btn-secondary">Clear All</button>
+                <button id="btnExport" class="btn btn-primary">Export CSV</button>
+                <button id="btnPrint" class="btn btn-primary">Print</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
